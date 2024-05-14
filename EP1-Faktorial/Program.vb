@@ -5,17 +5,32 @@ Module Program
 
         Dim cislo As Integer
         Dim vysledek As Integer = 1
+        Dim text As String
+        Dim spravnahodnota As Boolean = False
 
         Do
             Console.write("Zadej celé číslo pro výpočet faktoriálu: ")
-        Loop Until Integer.TryParse(Console.readline(), cislo)
+            text = console.readline()
 
+            If Integer.Tryparse(text, cislo) AndAlso cislo >= 0 AndAlso cislo <= 10 Then
+                spravnahodnota = True
 
-        For x As Integer = 1 To cislo
+            Else
+                Console.Writeline("Chyba!!! Zadej číslo v rozmezí 0 - 10.")
+            End If
+
+        Loop Until spravnahodnota
+
+        If cislo > 0 Then
+            For x As Integer = 1 To cislo
                 vysledek *= x
             Next
+        End If
 
-            Console.writeline($"Faktoriál čísla {cislo} je {vysledek}")
+
+        Console.writeline($"Faktoriál čísla {cislo} je {vysledek}")
+
+
 
         Console.ReadKey()
     End Sub
