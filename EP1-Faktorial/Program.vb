@@ -3,17 +3,19 @@
 Module Program
     Sub Main(args As String())
 
-        Console.write("Zadej celé číslo pro výpočet faktoriálu: ")
-
-        Dim cislo As Integer = Integer.Parse(Console.ReadLine())
+        Dim cislo As Integer
         Dim vysledek As Integer = 1
+
+        Do
+            Console.write("Zadej celé číslo pro výpočet faktoriálu: ")
+        Loop Until Integer.TryParse(Console.readline(), cislo)
 
 
         For x As Integer = 1 To cislo
-            vysledek *= x
-        Next
+                vysledek *= x
+            Next
 
-        Console.writeline($"Faktoriál čísla {cislo} je {vysledek}")
+            Console.writeline($"Faktoriál čísla {cislo} je {vysledek}")
 
         Console.ReadKey()
     End Sub
