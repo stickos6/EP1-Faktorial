@@ -3,36 +3,49 @@
 Module Program
     Sub Main(args As String())
 
-        Dim cislo As Integer
-        Dim vysledek As Integer = 1
-        Dim text As String
-        Dim spravnahodnota As Boolean = False
+        Dim pokracovat As Boolean = True
 
-        Do
-            Console.write("Zadej celé číslo pro výpočet faktoriálu: ")
-            text = console.readline()
+        While pokracovat
+            Dim cislo As Integer
+            Dim vysledek As Integer = 1
+            Dim text As String
+            Dim spravnahodnota As Boolean = False
 
-            If Integer.Tryparse(text, cislo) AndAlso cislo >= 0 AndAlso cislo <= 10 Then
-                spravnahodnota = True
 
-            ElseIf Integer.TryParse(text, cislo) AndAlso cislo < 0 Then
-                Console.writeline("Záporná čísla nejsou povolena!")
-            Else
-                Console.Writeline("Chyba!!! Zadej číslo v rozmezí 0 - 10.")
+            Do
+                Console.write("Zadej celé číslo pro výpočet faktoriálu: ")
+                text = console.readline()
+
+                If Integer.Tryparse(text, cislo) AndAlso cislo >= 0 AndAlso cislo <= 10 Then
+                    spravnahodnota = True
+
+                ElseIf Integer.TryParse(text, cislo) AndAlso cislo < 0 Then
+                    Console.writeline("Záporná čísla nejsou povolena!")
+                Else
+                    Console.Writeline("Chyba!!! Zadej číslo v rozmezí 0 - 10.")
+                End If
+
+            Loop Until spravnahodnota
+
+            If cislo > 0 Then
+                For x As Integer = 1 To cislo
+                    vysledek *= x
+                Next
             End If
 
-        Loop Until spravnahodnota
+            Console.writeline($"Faktoriál čísla {cislo} je {vysledek}")
 
-        If cislo > 0 Then
-            For x As Integer = 1 To cislo
-                vysledek *= x
-            Next
-        End If
+            Console.WriteLine("Přejete si provést další výpočet? (ano/ne)")
+            Dim pokracovani As String = Console.Readline()
 
+            If pokracovani.ToLower() <> "ano" Then
 
-        Console.writeline($"Faktoriál čísla {cislo} je {vysledek}")
+                pokracovat = False
 
+            End If
+        End While
 
+        Console.writeline("Program byl ukončen! Stiskni libovolnou klávesu.")
 
         Console.ReadKey()
     End Sub
