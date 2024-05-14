@@ -15,6 +15,8 @@ Module Program
             If Integer.Tryparse(text, cislo) AndAlso cislo >= 0 AndAlso cislo <= 10 Then
                 spravnahodnota = True
 
+            ElseIf Integer.TryParse(text, cislo) AndAlso cislo < 0 Then
+                Console.writeline("Záporná čísla nejsou povolena!")
             Else
                 Console.Writeline("Chyba!!! Zadej číslo v rozmezí 0 - 10.")
             End If
