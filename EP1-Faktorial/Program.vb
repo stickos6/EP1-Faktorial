@@ -7,7 +7,6 @@ Module Program
 
         While pokracovat
             Dim cislo As Integer
-            Dim vysledek As Integer = 1
             Dim text As String
             Dim spravnahodnota As Boolean = False
 
@@ -27,13 +26,8 @@ Module Program
 
             Loop Until spravnahodnota
 
-            If cislo > 0 Then
-                For x As Integer = 1 To cislo
-                    vysledek *= x
-                Next
-            End If
-
-            Console.writeline($"Faktoriál čísla {cislo} je {vysledek}")
+            Dim vysledekfaktorialu As Integer = ComputeFactorial(cislo)
+            Console.WriteLine($"Faktoriál čísla {cislo} je {vysledekfaktorialu}")
 
             Console.WriteLine("Přejete si provést další výpočet? (ano/ne)")
             Dim pokracovani As String = Console.Readline()
@@ -49,4 +43,21 @@ Module Program
 
         Console.ReadKey()
     End Sub
+
+
+    Function ComputeFactorial(ByVal n As Integer) As Integer
+        If n = 0 Then
+            Return 1
+
+        Else
+
+            Dim vysledek As Integer = 1
+            For x As Integer = 1 To n
+                vysledek *= x
+            Next
+
+            Return vysledek
+        End If
+    End Function
+
 End Module
